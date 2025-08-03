@@ -16,7 +16,6 @@ function senttest(){
 }
 
 btn.addEventListener("touchend", (e) => {
-  e.preventDefault(); // 避免額外點擊或畫面跳動
   let base64image = pic.toDataURL("image/png");
   fetch("http://127.0.0.1:5000/AI_main", {
     method: "POST",
@@ -76,3 +75,4 @@ pic.addEventListener("touchmove", (e) => {
 pic.addEventListener("touchend", () => {
   drawing = false;
 });
+
