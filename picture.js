@@ -38,12 +38,12 @@ pic.addEventListener("mouseup", () => {
 pic.addEventListener("touchstart", (e) => {
   drawing = true;
   picx.beginPath();         // 開始新的繪圖路徑
-  picx.moveTo(e.offsetX, e.offsetY); // 起點
+  picx.moveTo(touches[0].clientX, touches[0].clientY); // 起點
 });
 
 pic.addEventListener("touchmove", (e) => {
   if (!drawing) return;
-  picx.lineTo(e.offsetX, e.offsetY); // 畫到目前滑鼠位置
+  picx.lineTo(touches[0].clientX, touches[0].clientY); // 畫到目前滑鼠位置
   picx.strokeStyle = "black";
   picx.lineWidth = 2;
   picx.lineJoin = "round";
