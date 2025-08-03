@@ -37,7 +37,7 @@ pic.addEventListener("mouseup", () => {
 
 pic.addEventListener("touchstart", (e) => {
   drawing = true;
-  const rect = ic.getBoundingClientRect();
+  const rect = pic.getBoundingClientRect();
   const x = e.touches[0].clientX - rect.left;
   const y = e.touches[0].clientY - rect.top;
   picx.beginPath();         // 開始新的繪圖路徑
@@ -47,7 +47,7 @@ pic.addEventListener("touchstart", (e) => {
 pic.addEventListener("touchmove", (e) => {
   if (!drawing) return;
   e.preventDefault();
-  const rect = ic.getBoundingClientRect();
+  const rect = pic.getBoundingClientRect();
   const x = e.touches[0].clientX - rect.left;
   const y = e.touches[0].clientY - rect.top;
 
