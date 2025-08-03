@@ -1,6 +1,5 @@
 var pic=document.getElementById("picture");
 var picx = picture.getContext("2d");
-var btn = getElementById("sent");
 function delpic(){
     picx.clearRect(0, 0, picture.width, picture.height);
 }
@@ -64,5 +63,3 @@ pic.addEventListener("touchmove", (e) => {
 pic.addEventListener("touchend", () => {
   drawing = false;
 });
-
-
