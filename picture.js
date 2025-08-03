@@ -15,17 +15,6 @@ function senttest(){
   .then(data => alert(data.result))
 }
 
-btn.addEventListener("touchend", (e) => {
-  let base64image = pic.toDataURL("image/png");
-  fetch("http://127.0.0.1:5000/AI_main", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ image: base64image })
-  })
-  .then(res => res.json())
-  .then(data => alert(data.result))
-}, { passive: false });
-
 let drawing = false;
 
 pic.addEventListener("mousedown", (e) => {
@@ -75,4 +64,5 @@ pic.addEventListener("touchmove", (e) => {
 pic.addEventListener("touchend", () => {
   drawing = false;
 });
+
 
