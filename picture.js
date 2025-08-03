@@ -38,18 +38,19 @@ pic.addEventListener("mouseup", () => {
 pic.addEventListener("touchstart", (e) => {
   drawing = true;
   picx.beginPath();         // 開始新的繪圖路徑
-  picx.moveTo(touches[0].clientX, touches[0].clientY); // 起點
+  picx.moveTo(e.touches[0].clientX, e.touches[0].clientY); // 起點
 });
 
 pic.addEventListener("touchmove", (e) => {
   if (!drawing) return;
-  picx.lineTo(touches[0].clientX, touches[0].clientY); // 畫到目前滑鼠位置
+  e.preventDefault();
+  picx.lineTo(e.touches[0].clientX, e.touches[0].clientY); // 畫到目前滑鼠位置
   picx.strokeStyle = "black";
   picx.lineWidth = 2;
   picx.lineJoin = "round";
   picx.lineCap = "round";
   picx.stroke();           // 繪出線條
-});
+},{ passive: false });
 
 pic.addEventListener("touchend", () => {
   drawing = false;
