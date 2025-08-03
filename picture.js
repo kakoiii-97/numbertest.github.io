@@ -45,8 +45,8 @@ pic.addEventListener("touchstart", (e) => {
   e.preventDefault();
   drawing = true;
   const pos = getTouchPos(e);
-  ctx.beginPath();
-  ctx.moveTo(pos.x, pos.y);
+  picx.beginPath();
+  picx.moveTo(pos.x, pos.y);
 
 });
 
@@ -54,8 +54,8 @@ pic.addEventListener("touchmove", (e) => {
   e.preventDefault();
   if (!drawing) return;
   const pos = getTouchPos(e);
-  ctx.lineTo(pos.x, pos.y);
-  ctx.stroke();
+  picx.lineTo(pos.x, pos.y);
+  picx.stroke();
 
 },{ passive: false });
 
