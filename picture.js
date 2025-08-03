@@ -34,29 +34,29 @@ pic.addEventListener("mousemove", (e) => {
 pic.addEventListener("mouseup", () => {
   drawing = false;
 });
-
-pic.addEventListener("touchstart", (e) => {
-  drawing = true;
+function getTouchPos(e) {
   const rect = pic.getBoundingClientRect();
-  const x = e.touches[0].clientX - rect.left;
-  const y = e.touches[0].clientY - rect.top;
-  picx.beginPath();         // 開始新的繪圖路徑
-  picx.moveTo(x,y); // 起點
+  return {
+    x: e.touches[0].clientX - rect.left,
+    y: e.touches[0].clientY - rect.top
+  };
+}
+pic.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  drawing = true;
+  const pos = getTouchPos(e);
+  ctx.beginPath();
+  ctx.moveTo(pos.x, pos.y);
+
 });
 
 pic.addEventListener("touchmove", (e) => {
-  if (!drawing) return;
   e.preventDefault();
-  const rect = pic.getBoundingClientRect();
-  const x = e.touches[0].clientX - rect.left;
-  const y = e.touches[0].clientY - rect.top;
+  if (!drawing) return;
+  const pos = getTouchPos(e);
+  ctx.lineTo(pos.x, pos.y);
+  ctx.stroke();
 
-  picx.lineTo(x,y); // 畫到目前滑鼠位置
-  picx.strokeStyle = "black";
-  picx.lineWidth = 2;
-  picx.lineJoin = "round";
-  picx.lineCap = "round";
-  picx.stroke();           // 繪出線條
 },{ passive: false });
 
 pic.addEventListener("touchend", () => {
