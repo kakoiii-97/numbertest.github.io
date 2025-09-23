@@ -1,6 +1,7 @@
 from keras.models import model_from_json
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PIL import ImageOps
 from PIL import Image
 import numpy as np
 import base64
@@ -22,19 +23,19 @@ def handle_image():
     if not data or 'image' not in data:
         return jsonify({'error': 'Missing image field'}), 400
 
-    img_base64 = data['image'].split(',')[1]  
+    img_base64 = data['image'].split(',')[1]
     # 去除 base64 開頭
     img_bytes = base64.b64decode(img_base64)
     img = Image.open(io.BytesIO(img_bytes)).convert('L')
     img = img.resize((28, 28))
+    img = ImageOps.invert(img)
 
-    img_array = np.array(img) / 255.0    # 轉成 NumPy 陣列並正規化
+    img_array = np.array(img)    # 轉成 NumPy 陣列並正規化
     img_array = img_array.reshape(1, 784)
     
     result = model.predict(img_array)
     predicted_class = int(result.argmax())
     return jsonify({'result': int(predicted_class)})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
