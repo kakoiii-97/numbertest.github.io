@@ -3,6 +3,7 @@ var picx = picture.getContext("2d");
 function delpic(){
     picx.clearRect(0, 0, picture.width, picture.height);
 }
+
 function senttest(){
   let base64image = pic.toDataURL("image/png");
   fetch("http://127.0.0.1:5000/AI_main", {
@@ -25,10 +26,10 @@ pic.addEventListener("mousedown", (e) => {
 pic.addEventListener("mousemove", (e) => {
   if (!drawing) return;
   picx.lineTo(e.offsetX, e.offsetY); // 畫到目前滑鼠位置
-  picx.strokeStyle = "black";
-  picx.lineWidth = 2;
-  picx.lineJoin = "round";
-  picx.lineCap = "round";
+  picx.strokeStyle = "white";
+  picx.lineWidth = 10;
+  picx.lineJoin = "square";
+  picx.lineCap = "square";
   picx.stroke();           // 繪出線條
 });
 

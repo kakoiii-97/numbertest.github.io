@@ -31,7 +31,8 @@ def handle_image():
     img = ImageOps.invert(img)
 
     img_array = np.array(img)    # 轉成 NumPy 陣列並正規化
-    img_array = img_array.reshape(1, 28, 28, 1)
+    img_array = img_array.reshape(1, 784)
+    
     result = model.predict(img_array)
     predicted_class = int(result.argmax())
     return jsonify({'result': int(predicted_class)})
