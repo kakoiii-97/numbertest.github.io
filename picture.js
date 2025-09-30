@@ -12,7 +12,7 @@ function senttest(){
     body: JSON.stringify({ image: base64image })
   })
   .then(res => res.json())
-  .then(data => alert(data.result))
+  .then(data => alert("預測結果:"+data.result))
 }
 
 let drawing = false;
